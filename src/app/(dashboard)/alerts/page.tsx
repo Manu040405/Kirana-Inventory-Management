@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/Card"
 import { Badge } from "@/components/ui/Badge"
 import { Loader2 } from "lucide-react"
-
+import SendEmailButton from "@/components/SendEmailButton";
 interface Product {
     _id: string;
     name: string;
@@ -34,8 +34,9 @@ export default function AlertsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold">Alerts & Notification</h1>
+                <SendEmailButton />
             </div>
 
             <div className="space-y-4">

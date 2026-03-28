@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card"
 import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button"
+import ExportButton from "@/components/ExportButton";
 import {
     Package,
     AlertTriangle,
@@ -19,7 +20,25 @@ import dbConnect from "@/lib/db"
 import Product from "@/models/Product"
 
 export const dynamic = 'force-dynamic';
+const handleExport = async () => {
+  try {
+    const res = await fetch('/api/export?time=' + new Date().getTime());
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
 
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'inventory_report.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error('Export failed', error);
+  }
+};
+<Button onClick={handleExport}>Export Report</Button>
 export default async function DashboardPage() {
     await dbConnect();
 
@@ -97,13 +116,13 @@ export default async function DashboardPage() {
                     <p className="text-muted-foreground mt-1">Manage your store inventory and alerts.</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" className="rounded-full">Export Report</Button>
-                    <Link href="/stock-in">
-                        <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90">
-                            + Add Stock
-                        </Button>
-                    </Link>
-                </div>
+    <ExportButton />
+    <Link href="/stock-in">
+        <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90">
+            + Add Stock
+        </Button>
+    </Link>
+</div>
             </div>
 
             {/* Stats Grid - Visual match to Reference (Clean, white cards, minimalist) */}
