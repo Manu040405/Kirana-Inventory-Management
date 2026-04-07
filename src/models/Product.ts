@@ -7,7 +7,9 @@ const ProductSchema = new mongoose.Schema({
     currentStock: { type: Number, default: 0 },
     price: { type: Number, required: true }, // Selling price
     icon: { type: String, default: '📦' },
-    status: { type: String, enum: ['Active', 'Low Stock', 'Out of Stock'], default: 'Active' }
+    status: { type: String, enum: ['Active', 'Low Stock', 'Out of Stock'], default: 'Active' },
+    hasExpiry: { type: Boolean, default: false },
+    expiryDate: { type: Date },
 }, { timestamps: true });
 
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema);

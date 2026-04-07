@@ -36,6 +36,8 @@ export default function ProductsPage() {
     const [editUnit, setEditUnit] = useState("");
     const [saving, setSaving] = useState(false);
 
+    const [hasExpiry, setHasExpiry] = useState(false);
+    const [expiryDate, setExpiryDate] = useState("");
     useEffect(() => {
         let isMounted = true;
         Promise.all([
