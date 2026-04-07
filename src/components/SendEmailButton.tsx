@@ -11,7 +11,7 @@ export default function SendEmailButton() {
       setLoading(true);
 
       const res = await fetch("/api/send-alert-email", {
-        method: "POST", // ✅ IMPORTANT FIX
+        method: "POST", 
         headers: {
           "Content-Type": "application/json",
         },
