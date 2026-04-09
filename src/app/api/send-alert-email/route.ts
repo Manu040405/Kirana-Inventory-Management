@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Product from '@/models/Product';
 import nodemailer from 'nodemailer';
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     await dbConnect();
 
