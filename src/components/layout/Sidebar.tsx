@@ -57,10 +57,16 @@ export function Sidebar() {
                 })}
             </nav>
             <div className="p-4">
-                <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors">
-                    <LogOut className="h-4 w-4" />
-                    Logout
-                </button>
+                <button
+    onClick={() => {
+        localStorage.removeItem("loggedIn"); // optional
+        window.location.href = "/login";
+    }}
+    className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+>
+    <LogOut className="h-4 w-4" />
+    Logout
+</button>
             </div>
         </aside>
     );
